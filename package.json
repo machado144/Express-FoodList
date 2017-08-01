@@ -1,0 +1,18 @@
+{
+  "name": "tacobell",
+  "version": "1.0.0",
+  "description": "This is an taco bell API created with express, mongoDB and nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Machado",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-mung": "^0.4.6",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.9.4"
+  }
+}
