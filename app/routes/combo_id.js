@@ -6,13 +6,11 @@ const byId = require('../rules/methods_by_id');
 module.exports = {
 
   get: (req, res) => {
-    debugger;
     Combo.findById(req.params.combo_id)
       .then((combo) => res.status(200).send(
         messageFormat.success(combo, 200)
       ))
       .catch((err) => {
-        debugger;
         res.status(400).send(messageFormat.error(err, 400));
         byId.castHandler(res, err);
       });
