@@ -9,6 +9,7 @@
   "author": "Lucas Machado",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-mung": "^0.4.6",

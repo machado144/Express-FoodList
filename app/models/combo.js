@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const FoodSchema = require('./foodSchema');
 const _ = require('lodash');
-const FoodSchema = require('./food');
 
 const ComboSchema = new Schema({
   name: {
@@ -13,20 +13,22 @@ const ComboSchema = new Schema({
     required: [true, 'Name is a mandatory field']
   },
   foods: [FoodSchema],
-});
-
-ComboSchema.virtual('totalPrice').get(function() {
-  let price = 0.00;
-  this.foods.map(f)=>{
-    price+=f.price;
+  totalPrice: {
+    type: Number,
+    required: [true, 'totalPrice is a mandatory field']
   }
-  return _.floor(price, 2);
 });
+//
+// ComboSchema.virtual('totalPrice').get(function() {
+//   let price = 0.00;
+//   this.foods.map((f)=> price+=f.price);
+//   return _.floor(price, 2);
+// });
+//
+// ComboSchema.virtual('itemsCount').get(function() {
+//   return this.foods.length;
+// });
 
-ComboSchema.virtual('itemsCount').get(function() {
-  return this.foods.length;
-});
-
-const Combo = mongoose.models('combo', ComboSchema);
+const Combo = mongoose.model('combo', ComboSchema);
 
 module.exports = Combo;

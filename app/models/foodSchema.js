@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const FoodsSchema = new Schema({
+const FoodSchema = new Schema({
   name: {
     type: String,
-    validate: {
-      validator: (name) => name.length > 3,
-      message: 'The field name must contains at least 3 chars'
-    },
     required: [true, 'The field name is mandatory']
   },
   price: {
@@ -19,15 +15,6 @@ const FoodsSchema = new Schema({
     enum: ['P', 'M', 'G', 'Default'],
     required: [true, 'The field size is mandatory']
   },
-  spicy: {
-    type: String,
-    enum: ['Light', 'Medium', 'Hot']
-  },
-  drinkable: {
-    type: Boolean,
-    required: [true, 'The drinkable option is a mandatory field'],
-    default: false
-  },
   refillable: {
     type: Boolean,
     required: [true, 'The refillable option is a mandatory field'],
@@ -35,6 +22,4 @@ const FoodsSchema = new Schema({
   }
 });
 
-const Food = mongoose.model('food', FoodsSchema);
-
-module.exports = Food;
+module.exports = FoodSchema;

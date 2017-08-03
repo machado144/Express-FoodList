@@ -6,7 +6,7 @@ module.exports = {
   post: (req, res) => {
 
     let food = new Food();
-    let successMessage = `Food ${req.body.name} created with success!`;
+    let message = `Food ${req.body.name} created with success!`;
 
     food.name = req.body.name;
     food.price = req.body.price;
@@ -17,7 +17,7 @@ module.exports = {
 
     food.save()
       .then((response) => res.status(201).send(
-        messageFormat.success(successMessage, 201)
+        messageFormat.success(message, 201)
       ))
       .catch((err) => res.status(400).send(
         messageFormat.error(err, 400)
