@@ -1,11 +1,13 @@
+const messageFormat = require('../rules/message_format');
+
 module.exports = function transform(body, req, res) {
   let responseBody = JSON.stringify(body);
+  let emptyBody = JSON.stringify(messageFormat.empty());
+  let message = 'Resource not found';
 
-  if (req.method === 'GET' && responseBody === '[]'){
-    res.status(404).send({
-      status: '404',
-      message: 'Resource not found'
-    });
-  }
+  if (req.method === 'GET' &&
+     (responseBody === '[]' ||
+     responseBody === emptyBody))
+    return res.status(404).send(messageFormat.error(message, 404));
   return body;
 }

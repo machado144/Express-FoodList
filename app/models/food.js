@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const IngredientSchema = require('./ingredientsSchema')
 
 const FoodsSchema = new Schema({
   name: {
@@ -32,7 +33,8 @@ const FoodsSchema = new Schema({
     type: Boolean,
     required: [true, 'The refillable option is a mandatory field'],
     default: false
-  }
+  },
+  ingredients: [IngredientSchema]
 });
 
 const Food = mongoose.model('food', FoodsSchema);

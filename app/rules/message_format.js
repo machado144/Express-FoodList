@@ -27,6 +27,15 @@ module.exports = {
         message: errorMessage(response)
       }
     }
+  },
+
+  empty: () => {
+    return {
+      results: {
+        status: 200,
+        data: null
+      }
+    }
   }
 
 }

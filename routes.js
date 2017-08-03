@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const express = require('express');
 const mongoose = require('mongoose');
 const mung = require('express-mung');
@@ -43,7 +42,7 @@ router.route('/combos').get(combosRoute.get);
 router.route('/combos').post(combosRoute.post);
 router.route('/combos/:combo_id').get(comboByIdRoute.get);
 router.route('/combos/:combo_id').put(comboByIdRoute.put);
-router.route('/combo/:combo_id').patch(comboByIdRoute.patch);
+router.route('/combos/:combo_id').patch(comboByIdRoute.patch);
 router.route('/combos/:combo_id').delete(comboByIdRoute.delete);
 
 module.exports = router;

@@ -11,25 +11,9 @@ const IngredientSchema = new Schema({
     },
     required: [true, 'Name is a mandatory field']
   },
-  price: {
-    type: Number,
-    validate: {
-      validator: (number) => number > 0,
-      message: 'The field price must be greater than $0,00'
-    },
-    required: [true, 'Price is a mandatory field']
-  },
-  size: {
-    type: String,
-    enum: ['P', 'M', 'G', 'Unique']
-  },
-  spicy: {
-    type: String,
-    enum: ['Light', 'Medium', 'Hot']
-  },
-  drinkable: {
+  isExpired: {
     type: Boolean,
-    required: [true, 'The drinkable option is mandatory']
+    required: [true, 'The isExpired option is mandatory']
   }
 });
 

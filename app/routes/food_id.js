@@ -1,5 +1,6 @@
 const Food = require('../models/food');
 const messageFormat = require('../rules/message_format');
+const byId = require('../rules/methods_by_id');
 
 module.exports = {
 
@@ -8,9 +9,10 @@ module.exports = {
       .then((food) => res.status(200).send(
         messageFormat.success(food, 200)
       ))
-      .catch((err) => res.status(res.statusCode).send(
-        messageFormat.error(err, res.statusCode)
-      ));
+      .catch((err) => {
+        byId.castHandler(res, err);
+        res.status(400).send(messageFormat.error(err, 400));
+      });
   },
 
   put: (req, res) => {
