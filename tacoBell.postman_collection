@@ -1,0 +1,227 @@
+{
+	"variables": [],
+	"info": {
+		"name": "tacoBell",
+		"_postman_id": "04153b79-6bca-702b-41c7-1ee8f98c47ce",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Combo Success",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/combos",
+					"request": {
+						"url": "http://localhost:8081/api/combos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"name\": \"Flame hot firah\",\n\t\"foods\": [{\n        \"drinkable\": true,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.57,\n        \"name\": \"Teste1\",\n        \"refillable\": false\n    },\n    {\n        \"drinkable\": false,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.11,\n        \"name\": \"Teste2\",\n        \"refillable\": false\n    },\n    {\n        \"drinkable\": false,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.45,\n        \"name\": \"Teste3\",\n        \"refillable\": false\n    },\n    {\n        \"drinkable\": false,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.12,\n        \"name\": \"Teste4\",\n        \"refillable\": false\n    }]\n}\n"
+						},
+						"description": "Combo"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/combos/{comboId}",
+					"request": {
+						"url": "http://localhost:8081/api/combos/59836a15030d4005e0458ac7",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/combos",
+					"request": {
+						"url": "http://localhost:8081/api/combos",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/combos/{comboId}",
+					"request": {
+						"url": "http://localhost:8081/api/combos/{comboId}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/combos/{comboId}",
+					"request": {
+						"url": "http://localhost:8081/api/combos/5982862312406e773078a621",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"name\": \"Flame hot updated\",\n\t\"foods\": [{\n        \"drinkable\": true,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.57,\n        \"name\": \"Teste1\",\n        \"refillable\": false\n    },\n    {\n        \"drinkable\": false,\n        \"spicy\": \"Hot\",\n        \"size\": \"M\",\n        \"price\": 2.11,\n        \"name\": \"Teste2\",\n        \"refillable\": false\n    }]\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/combos/{comboId}",
+					"request": {
+						"url": "http://localhost:8081/api/combos/5982862312406e773078a621",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"name\": \"Flame hot patched\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Food Success",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/foods",
+					"request": {
+						"url": "http://localhost:8081/api/foods",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Burrito\",\n\t\"price\": 2.1,\n\t\"size\": \"M\",\n\t\"spicy\": \"Hot\",\n\t\"refillable\": 3,\n\t\"drinkable\": false,\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"Sauce\",\n\t\t\t\"isExpired\": false\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Lettuce\",\n\t\t\t\"isExpired\": false\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Meat\",\n\t\t\t\"isExpired\": false\n\t\t}\n\t]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/foods",
+					"request": {
+						"url": "http://localhost:8081/api/foods",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/foods/{foodId}",
+					"request": {
+						"url": "http://localhost:8081/api/foods/{foodId}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/foods/{foodId}",
+					"request": {
+						"url": "http://localhost:8081/api/foods/59816c6e2325183ff96bcce3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Burrito updated\",\n\t\"price\": 2.1,\n\t\"size\": \"M\",\n\t\"spicy\": \"Hot\",\n\t\"refillable\": 3,\n\t\"drinkable\": false,\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"Sauce\",\n\t\t\t\"isExpired\": false\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Lettuce\",\n\t\t\t\"isExpired\": false\n\t\t},\n\t\t{\n\t\t\t\"name\": \"Meat\",\n\t\t\t\"isExpired\": false\n\t\t}\n\t]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/foods/{foodId}",
+					"request": {
+						"url": "http://localhost:8081/api/foods/59816c6e2325183ff96bcce3",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Burrito patched\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/foods/{foodId}",
+					"request": {
+						"url": "http://localhost:8081/api/foods/598245077b9149605f8143d5",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
