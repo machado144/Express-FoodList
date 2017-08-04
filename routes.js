@@ -10,11 +10,12 @@ const foodsRoute = require('./app/routes/foods');
 const foodByIdRoute = require('./app/routes/food_id');
 const comboByIdRoute = require('./app/routes/combo_id');
 const combosRoute = require('./app/routes/combos');
+const envConfig = require('./app/seeds/env_config');
 const router = express.Router();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/taco_bell', {
+mongoose.connect(`mongodb://localhost/taco_bell${envConfig()}`, {
   useMongoClient: true
 });
 

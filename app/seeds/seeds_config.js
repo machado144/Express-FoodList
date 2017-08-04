@@ -4,11 +4,11 @@ const Combo = require('../models/combo');
 
 const seedsConfig = (mongooseObject) => {
   let collections = Object.keys(mongooseObject.connection.collections);
-  collections.map((c) => {
-    mongooseObject.connection.collections[c].drop(() => {});
-  });
+  let count = 0;
   if (process.env.ENV === 'Tests') {
-    let count = 0;
+    collections.map((c) => {
+      mongooseObject.connection.collections[c].drop(() => {});
+    });
     while (count < 10) {
       new Combo(seeds.combos()).save()
       new Food(seeds.foods()).save()
