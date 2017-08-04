@@ -12,7 +12,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8081/api/combos",
+					"name": "NewCombo",
 					"request": {
 						"url": "http://localhost:8081/api/combos",
 						"method": "POST",
@@ -32,7 +32,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/combos/{comboId}",
+					"name": "ComboById",
 					"request": {
 						"url": "http://localhost:8081/api/combos/59836a15030d4005e0458ac7",
 						"method": "DELETE",
@@ -52,7 +52,20 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/combos",
+					"name": "ComboList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let comboId = JSON.parse(responseBody);",
+									"comboId = comboId[0]._id;",
+									"postman.setGlobalVariable(\"comboId\", comboId);"
+								]
+							}
+						}
+					],
 					"request": {
 						"url": "http://localhost:8081/api/combos",
 						"method": "GET",
@@ -63,9 +76,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/combos/{comboId}",
+					"name": "ComboById",
 					"request": {
-						"url": "http://localhost:8081/api/combos/{comboId}",
+						"url": "http://localhost:8081/api/combos/{{comboId}}",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -74,9 +87,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/combos/{comboId}",
+					"name": "ComboById",
 					"request": {
-						"url": "http://localhost:8081/api/combos/5982862312406e773078a621",
+						"url": "http://localhost:8081/api/combos/{{comboId}}",
 						"method": "PUT",
 						"header": [
 							{
@@ -94,9 +107,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/combos/{comboId}",
+					"name": "ComboById",
 					"request": {
-						"url": "http://localhost:8081/api/combos/5982862312406e773078a621",
+						"url": "http://localhost:8081/api/combos/{{comboId}}",
 						"method": "PATCH",
 						"header": [
 							{
@@ -120,7 +133,7 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:8081/api/foods",
+					"name": "NewFood",
 					"request": {
 						"url": "http://localhost:8081/api/foods",
 						"method": "POST",
@@ -140,7 +153,20 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/foods",
+					"name": "FoodList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"let foodId = JSON.parse(responseBody);",
+									"foodId = foodId[0]._id;",
+									"postman.setGlobalVariable(\"foodId\", foodId);"
+								]
+							}
+						}
+					],
 					"request": {
 						"url": "http://localhost:8081/api/foods",
 						"method": "GET",
@@ -151,9 +177,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/foods/{foodId}",
+					"name": "FoodById",
 					"request": {
-						"url": "http://localhost:8081/api/foods/{foodId}",
+						"url": "http://localhost:8081/api/foods/{{foodId}}",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -162,7 +188,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/foods/{foodId}",
+					"name": "FoodById",
 					"request": {
 						"url": "http://localhost:8081/api/foods/59816c6e2325183ff96bcce3",
 						"method": "PUT",
@@ -182,9 +208,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/foods/{foodId}",
+					"name": "FoodById",
 					"request": {
-						"url": "http://localhost:8081/api/foods/59816c6e2325183ff96bcce3",
+						"url": "http://localhost:8081/api/foods/{{foodId}}",
 						"method": "PATCH",
 						"header": [
 							{
@@ -202,9 +228,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:8081/api/foods/{foodId}",
+					"name": "FoodById",
 					"request": {
-						"url": "http://localhost:8081/api/foods/598245077b9149605f8143d5",
+						"url": "http://localhost:8081/api/foods/{{foodId}}",
 						"method": "DELETE",
 						"header": [
 							{
