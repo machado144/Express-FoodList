@@ -34,7 +34,7 @@
 				{
 					"name": "ComboById",
 					"request": {
-						"url": "http://localhost:8081/api/combos/59836a15030d4005e0458ac7",
+						"url": "http://localhost:8081/api/combos/{{comboId}}",
 						"method": "DELETE",
 						"header": [
 							{
@@ -190,7 +190,7 @@
 				{
 					"name": "FoodById",
 					"request": {
-						"url": "http://localhost:8081/api/foods/59816c6e2325183ff96bcce3",
+						"url": "http://localhost:8081/api/foods/{{foodId}}",
 						"method": "PUT",
 						"header": [
 							{
