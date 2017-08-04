@@ -6,7 +6,14 @@ const messageFormat = require('../rules/message_format');
 module.exports = {
 
   get: (req, res) => {
+    let pages = _.toNumber(req.query.page);
+    pages *= 10
+    if (pages < 0)
+      pages = 0
+
     Combo.find()
+      .skip(pages)
+      .limit(_.toNumber(req.query.limit))
       .then((combo) => res.json(combo))
       .catch((err) => res.status(res.statusCode).send(
         messageFormat.error(err, res.statusCode)
