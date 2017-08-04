@@ -7,7 +7,9 @@ module.exports = {
     let firstItem = _.floor((_.random(1.1, 10.9)), 2);
     let secondItem = _.floor((_.random(1.1, 10.9)), 2);
     let thirdItem = _.floor((_.random(1.1, 10.9)), 2);
-    let totalPrice = _.sum([firstItem, secondItem, thirdItem]);
+    let totalPrice = _.floor(
+      _.sum([firstItem, secondItem, thirdItem]), 2
+    );
     return {
       name: `Combo ${faker.name.firstName()}`,
       foods: [

@@ -18,16 +18,6 @@ const ComboSchema = new Schema({
     required: [true, 'totalPrice is a mandatory field']
   }
 });
-//
-// ComboSchema.virtual('totalPrice').get(function() {
-//   let price = 0.00;
-//   this.foods.map((f)=> price+=f.price);
-//   return _.floor(price, 2);
-// });
-//
-// ComboSchema.virtual('itemsCount').get(function() {
-//   return this.foods.length;
-// });
 
 const Combo = mongoose.model('combo', ComboSchema);
 
