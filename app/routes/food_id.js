@@ -61,8 +61,8 @@ module.exports = {
       .then((food) => res.status(200).send(
         messageFormat.success(message, 200)
       ))
-      .catch((err) => res.status(res.statusCode).send(
-        messageFormat.error(err, res.statusCode)
+      .catch((err) => res.status(400).send(
+        messageFormat.delete(err, 400)
       ));
   }
 

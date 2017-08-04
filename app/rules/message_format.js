@@ -9,6 +9,16 @@ function errorMessage(err) {
   }
 }
 
+function deleteMessage(err) {
+  let key, string;
+  string = JSON.stringify(err);
+  if (string.includes('CastError')) {
+    return "Could not found any records with the given _id";
+  }else{
+    return err
+  }
+}
+
 module.exports = {
 
   success: (response, status) => {
@@ -34,6 +44,15 @@ module.exports = {
       results: {
         status: 200,
         data: null
+      }
+    }
+  },
+
+  delete: (response, status) => {
+    return {
+      results: {
+        status: status,
+        message: deleteMessage(response)
       }
     }
   }
