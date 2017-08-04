@@ -21,7 +21,7 @@ module.exports = {
     let message = 'Current combo updated with success!';
     Combo.findById(req.params.combo_id)
       .then((combo) => {
-        keys = Object.keys(req.body);
+        keys = _.keys(req.body);
         keys.map((e) => combo[e] = req.body[e]);
         combo.save()
           .then((combo) => res.status(200).send(
@@ -41,7 +41,7 @@ module.exports = {
     let keys;
     Combo.findById(req.params.combo_id)
       .then((combo) => {
-        keys = Object.keys(req.body);
+        keys = _.keys(req.body);
         keys.map((e) => combo[e] = req.body[e]);
         combo.save()
           .then((combo) => res.status(200).send(
