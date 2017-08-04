@@ -1,3 +1,4 @@
+const seedsRun = require('./app/seeds/seeds_config');
 const express = require('express');
 const mongoose = require('mongoose');
 const mung = require('express-mung');
@@ -18,7 +19,7 @@ mongoose.connect('mongodb://localhost/taco_bell', {
 });
 
 mongoose.connection
-  .once('open', () => {})
+  .once('open', () => seedsRun(mongoose))
   .on('error', (error) => {
     console.warn('Warning', error);
   });
