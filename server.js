@@ -24,6 +24,4 @@ app.use(morgan('combined', {stream: accessLogStream}))
 
 app.use('/api', routes);
 
-app.listen(port, () => {
-  console.log(`Listening to port: ${port}`);
-});
+app.listen(port, () => console.log(`Listening to port: ${port}`));
