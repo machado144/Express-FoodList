@@ -31,10 +31,13 @@ module.exports = {
     if (pages < 0)
       pages = 0
 
-    Food.find()
+    Food.find(req.query)
       .skip(pages)
       .limit(_.toNumber(req.query.limit))
-      .then((food) => res.json(food))
+      .then((food) => {
+        debugger
+        res.json(food)
+      })
       .catch((err) => res.status(res.statusCode).send(
         messageFormat.error(err, res.statusCode)
       ));

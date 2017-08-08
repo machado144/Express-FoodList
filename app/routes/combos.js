@@ -11,7 +11,7 @@ module.exports = {
     if (pages < 0)
       pages = 0
 
-    Combo.find()
+    Combo.find(req.query)
       .skip(pages)
       .limit(_.toNumber(req.query.limit))
       .then((combo) => res.json(combo))
