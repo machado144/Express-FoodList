@@ -13,10 +13,18 @@ const ComboSchema = new Schema({
     required: [true, 'Name is a mandatory field']
   },
   foods: [FoodSchema],
-  totalPrice: {
-    type: Number,
-    required: [true, 'totalPrice is a mandatory field']
-  }
+  id: false
+});
+
+ComboSchema.set('toJSON', {
+  virtuals: true
+});
+
+ComboSchema.virtual('totalPrice').get(function () {
+  let price = 0.00;
+  this.foods.map((f) => price+=f.price);
+  price = _.floor(price, 2)
+  return price
 });
 
 const Combo = mongoose.model('combo', ComboSchema);
