@@ -1,13 +1,11 @@
-const Food = require('../models/food');
-const _ = require('lodash');
-const messageFormat = require('../rules/message_format');
+const Food          = require('../models/food'),
+      _             = require('lodash'),
+      messageFormat = require('../rules/message_format');
 
 module.exports = {
-
   post: (req, res) => {
-
-    let food = new Food();
-    let message = `Food ${req.body.name} created with success!`;
+    let food = new Food(),
+        message = `Food ${req.body.name} created with success!`;
 
     food.name = req.body.name;
     food.price = req.body.price;
@@ -35,7 +33,6 @@ module.exports = {
       .skip(pages)
       .limit(_.toNumber(req.query.limit))
       .then((food) => {
-        debugger
         res.json(food)
       })
       .catch((err) => res.status(res.statusCode).send(

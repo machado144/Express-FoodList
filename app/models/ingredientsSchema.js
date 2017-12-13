@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const _ = require('lodash');
+const mongoose = require('mongoose'),
+      Schema   = mongoose.Schema,
+      _        = require('lodash');
 
 const IngredientSchema = new Schema({
   name: {

@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const FoodSchema = require('./foodSchema');
-const _ = require('lodash');
+const mongoose   = require('mongoose'),
+      Schema     = mongoose.Schema,
+      FoodSchema = require('./food'),
+      _          = require('lodash');
 
 const ComboSchema = new Schema({
   name: {
@@ -12,13 +12,14 @@ const ComboSchema = new Schema({
     },
     required: [true, 'Name is a mandatory field']
   },
-  foods: [FoodSchema],
+  foods: [{
+    type: Schema.Types.ObjectId,
+    ref: 'food'
+  }],
   id: false
 });
 
-ComboSchema.set('toJSON', {
-  virtuals: true
-});
+ComboSchema.set('toJSON', { virtuals: true });
 
 ComboSchema.virtual('totalPrice').get(function () {
   let price = 0.00;

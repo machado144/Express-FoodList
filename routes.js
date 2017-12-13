@@ -1,21 +1,21 @@
-const seedsRun = require('./app/seeds/seeds_config');
-const express = require('express');
-const mongoose = require('mongoose');
-const mung = require('express-mung');
-const jsonHandler = require('./app/middleware/json');
-const headerHandler = require('./app/middleware/headers');
-const getListValidator = require('./app/middleware/get_list');
-const patchHandler = require('./app/middleware/patch_handler');
-const foodsRoute = require('./app/routes/foods');
-const foodByIdRoute = require('./app/routes/food_id');
-const comboByIdRoute = require('./app/routes/combo_id');
-const combosRoute = require('./app/routes/combos');
-const envConfig = require('./app/seeds/env_config');
-const router = express.Router();
+const seedsRun         = require('./app/seeds/seeds_config'),
+      express          = require('express'),
+      mongoose         = require('mongoose'),
+      mung             = require('express-mung'),
+      jsonHandler      = require('./app/middleware/json'),
+      headerHandler    = require('./app/middleware/headers'),
+      getListValidator = require('./app/middleware/get_list'),
+      patchHandler     = require('./app/middleware/patch_handler'),
+      foodsRoute       = require('./app/routes/foods'),
+      foodByIdRoute    = require('./app/routes/food_id'),
+      comboByIdRoute   = require('./app/routes/combo_id'),
+      combosRoute      = require('./app/routes/combos'),
+      envConfig        = require('./app/seeds/env_config'),
+      router           = express.Router();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://localhost/taco_bell${envConfig()}`, {
+mongoose.connect(`mongodb://localhost/food_list${envConfig()}`, {
   useMongoClient: true
 });
 
@@ -31,7 +31,7 @@ router.use(patchHandler);
 router.use(mung.json(getListValidator));
 
 router.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Taco Bell Home!' });
+  res.json({ message: 'Welcome to FoodList Home!' });
 });
 
 router.route('/foods').get(foodsRoute.get);

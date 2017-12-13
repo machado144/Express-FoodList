@@ -20,7 +20,6 @@ function deleteMessage(err) {
 }
 
 module.exports = {
-
   success: (response, status) => {
     return {
       results: {

@@ -1,7 +1,7 @@
 {
 	"variables": [],
 	"info": {
-		"name": "tacoBell",
+		"name": "FoodList",
 		"_postman_id": "04153b79-6bca-702b-41c7-1ee8f98c47ce",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"

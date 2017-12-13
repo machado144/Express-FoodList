@@ -1,9 +1,8 @@
-const Food = require('../models/food');
-const messageFormat = require('../rules/message_format');
-const byId = require('../rules/methods_by_id');
+const Food          = require('../models/food'),
+      messageFormat = require('../rules/message_format'),
+      byId          = require('../rules/methods_by_id');
 
 module.exports = {
-
   get: (req, res) => {
     Food.findById(req.params.foods_id)
       .then((food) => res.status(200).send(
@@ -16,8 +15,8 @@ module.exports = {
   },
 
   put: (req, res) => {
-    let keys;
-    let message = 'Current food updated with success!';
+    let keys,
+        message = 'Current food updated with success!';
     Food.findById(req.params.foods_id)
       .then((food) => {
         keys = Object.keys(req.body);
@@ -36,8 +35,8 @@ module.exports = {
   },
 
   patch: (req, res) => {
-    let message = 'Current food updated with success!';
-    let keys;
+    let message = 'Current food updated with success!',
+        keys;
     Food.findById(req.params.foods_id)
       .then((food) => {
         keys = Object.keys(req.body);
@@ -65,5 +64,4 @@ module.exports = {
         messageFormat.delete(err, 400)
       ));
   }
-
 }

@@ -1,10 +1,9 @@
-const _ = require('lodash');
-const Food = require('../models/food');
-const Combo = require('../models/combo');
-const messageFormat = require('../rules/message_format');
+const _             = require('lodash'),
+      Food          = require('../models/food'),
+      Combo         = require('../models/combo'),
+      messageFormat = require('../rules/message_format');
 
 module.exports = {
-
   get: (req, res) => {
     let pages = _.toNumber(req.query.page);
     pages *= 10
@@ -22,8 +21,8 @@ module.exports = {
 
   post: (req, res) => {
 
-    let combo = new Combo;
-    let message = `Combo ${req.body.name} created with success!`;
+    let combo   = new Combo,
+        message = `Combo ${req.body.name} created with success!`;
 
     combo.name = req.body.name;
     combo.foods = req.body.foods;

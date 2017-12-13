@@ -1,10 +1,11 @@
 {
-  "name": "tacobell",
+  "name": "FoodList",
   "version": "1.0.0",
-  "description": "This is an taco bell API created with express, mongoDB and nodeJS",
+  "description": "This is an FoodList API created with express, mongoDB and nodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js",
+    "start_qa": "ENV=Tests nodemon server.js"
   },
   "author": "Lucas Machado",
   "license": "ISC",

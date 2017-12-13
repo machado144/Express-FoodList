@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const IngredientSchema = require('./ingredientsSchema')
+const mongoose         = require('mongoose'),
+      Schema           = mongoose.Schema,
+      IngredientSchema = require('./ingredientsSchema');
 
 const FoodsSchema = new Schema({
   name: {
@@ -33,6 +33,10 @@ const FoodsSchema = new Schema({
     type: Boolean,
     required: [true, 'The refillable option is a mandatory field'],
     default: false
+  },
+  image: {
+    type: String,
+    required: false
   },
   ingredients: [IngredientSchema]
 });

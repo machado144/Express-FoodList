@@ -1,11 +1,11 @@
-const morgan = require('morgan');
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const routes = require('./routes');
-const fs = require('fs')
-const path = require('path')
-const rfs = require('rotating-file-stream')
+const morgan     = require('morgan'),
+      express    = require('express'),
+      app        = express(),
+      bodyParser = require('body-parser'),
+      routes     = require('./routes'),
+      fs         = require('fs'),
+      path       = require('path'),
+      rfs        = require('rotating-file-stream');
 
 const port = process.env.PORT || 8081;
 
