@@ -1,6 +1,6 @@
 const mongoose   = require('mongoose'),
       Schema     = mongoose.Schema,
-      FoodSchema = require('./food'),
+      FoodSchema = require('./foodSchema'),
       _          = require('lodash');
 
 const ComboSchema = new Schema({
@@ -12,10 +12,7 @@ const ComboSchema = new Schema({
     },
     required: [true, 'Name is a mandatory field']
   },
-  foods: [{
-    type: Schema.Types.ObjectId,
-    ref: 'food'
-  }],
+  foods: [FoodSchema],
   id: false
 });
 

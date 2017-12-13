@@ -4,9 +4,10 @@ const faker = require('faker'),
 module.exports = {
 
   combos: () => {
-    let firstItem  = _.floor((_.random(1.1, 10.9)), 2),
-        secondItem = _.floor((_.random(1.1, 10.9)), 2),
-        thirdItem  = _.floor((_.random(1.1, 10.9)), 2);
+
+  let firstItem  = _.floor((_.random(1.1, 10.9)), 2),
+      secondItem = _.floor((_.random(1.1, 10.9)), 2),
+      thirdItem  = _.floor((_.random(1.1, 10.9)), 2);
 
     return {
       name: `Combo ${faker.name.firstName()}`,
@@ -31,13 +32,14 @@ module.exports = {
           size: _.sample(['P', 'M', 'G', 'Default']),
           refillable: _.sample([true, false]),
           image: faker.image.food()
-        },
+        }
       ]
     }
   },
 
-  foods: () => {
+  foods: (id) => {
     return {
+      _id: Number(id),
       name: `Food ${faker.name.firstName()}`,
       size: _.sample(['P', 'M', 'G', 'Default']),
       spicy: _.sample(['Light', 'Medium', 'Hot']),

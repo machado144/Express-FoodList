@@ -28,7 +28,7 @@ module.exports = {
     combo.foods = req.body.foods;
 
     combo.save()
-      .then((combo) => res.status(201).send(
+      .then(res.status(201).send(
         messageFormat.success(message, 201)
       ))
       .catch((err) => res.status(400).send(
