@@ -3,7 +3,6 @@ const mongoose         = require('mongoose'),
       IngredientSchema = require('./ingredientsSchema');
 
 const FoodsSchema = new Schema({
-  _id: false,
   name: {
     type: String,
     validate: {

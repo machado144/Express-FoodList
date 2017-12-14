@@ -37,9 +37,8 @@ module.exports = {
     }
   },
 
-  foods: (id) => {
+  foods: () => {
     return {
-      _id: Number(id),
       name: `Food ${faker.name.firstName()}`,
       size: _.sample(['P', 'M', 'G', 'Default']),
       spicy: _.sample(['Light', 'Medium', 'Hot']),

@@ -10,11 +10,10 @@ const seedsConfig = (mongooseObject) => {
     collections.map((c) => {
       mongooseObject.connection.collections[c].drop(() => {});
     });
-    while (count < 100) {
+    _.times(100, () => {
       new Food(seeds.foods(count)).save();
-      count++
-    }
-    _.times(100, () => new Combo(seeds.combos()).save());
+      new Combo(seeds.combos()).save();
+    });
   }
 }
 module.exports = seedsConfig;
