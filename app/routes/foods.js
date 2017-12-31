@@ -29,7 +29,7 @@ module.exports = {
     if (pages < 0)
       pages = 0
 
-    Food.find(req.query)
+    Food.find()
       .skip(pages)
       .limit(_.toNumber(req.query.limit))
       .then((food) => {
