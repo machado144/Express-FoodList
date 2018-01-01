@@ -32,11 +32,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/ingredientsDefinition"
     post:
       tags:
         - foods
@@ -89,10 +85,10 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "400":
+          description: BadRequest
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequest"
   /foods/{foodId}:
     get:
       tags:
@@ -100,25 +96,31 @@ paths:
       description: Returns exclusive food by id
       operationId: food
       parameters:
-        - name: id
+        - name: foodId
           in: path
           required: true
           type: string
+          description: ID of the current Food
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+            $ref: "#/definitions/foodItem"
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     put:
       tags:
         - foodById
       description: Edit informations from an specific Food
       operationId: food
       parameters:
+        - name: foodId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Food
         - in: body
           name: putFoodPayload
           description: Payload format to edit the current Food
@@ -151,16 +153,21 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     patch:
       tags:
         - foodById
       description: Edit only one atribute from an specific Food
       operationId: food
       parameters:
+        - name: foodId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Food
         - in: body
           name: patchFoodPayload
           description: Payload format to edit the current Food
@@ -190,24 +197,30 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     delete:
       tags:
         - foodById
       description: Remove the specific food from Food List
       operationId: food
+      parameters:
+        - name: foodId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Food
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
   /combos:
     get:
       tags:
@@ -230,10 +243,6 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
-          schema:
-            $ref: "#/definitions/ErrorResponse"
     post:
       tags:
         - combos
@@ -275,31 +284,42 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "400":
+          description: BadRequest
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/BadRequest"
   /combos/{comboId}:
     get:
       tags:
         - comboById
       description: Returns exclusive combo by id
       operationId: combo
+      parameters:
+        - name: comboId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Combo
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+            $ref: "#/definitions/comboItem"
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     put:
       tags:
         - comboById
       description: Edit informations from an specific Combo
       operationId: combo
       parameters:
+        - name: comboId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Combo
         - in: body
           name: putComboPayload
           description: Payload format to edit the current Combo
@@ -326,16 +346,21 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     patch:
       tags:
         - comboById
       description: Edit only one atribute from an specific Combo
       operationId: combo
       parameters:
+        - name: comboId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Combo
         - in: body
           name: patchComboPayload
           description: Payload format to edit the current Combo
@@ -357,54 +382,33 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
     delete:
       tags:
         - comboById
       description: Remove the specific combo from Combo List
       operationId: combo
+      parameters:
+        - name: comboId
+          in: path
+          required: true
+          type: string
+          description: ID of the current Combo
       responses:
         "200":
           description: Success
           schema:
             $ref: "#/definitions/UndefinedYetResponse"
-        default:
-          description: Error
+        "404":
+          description: Resouce not found
           schema:
-            $ref: "#/definitions/ErrorResponse"
+            $ref: "#/definitions/NotFound"
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
-  foodDefinition:
-    required:
-      - name
-      - price
-      - size
-      - drinkable
-      - refillable
-    properties:
-      name:
-        type: string
-      price:
-        type: number
-      size:
-        type: string
-      drinkable:
-        type: boolean
-      refillable:
-        type: boolean
-      image:
-        type: string
-      spicy:
-        type: string
-      ingredients:
-        schema:
-          type: array
-          items:
-            $ref: "#/definitions/ingredientsDefinition"
   ingredientsDefinition:
     required:
       - name
@@ -430,12 +434,107 @@ definitions:
         type: boolean
       image:
         type: string
-  UndefinedYetResponse:
+  foodItem:
     required:
-      - message
+      - name
+      - price
+      - size
+      - drinkable
+      - refillable
     properties:
-      message:
+      name:
         type: string
+      price:
+        type: number
+      size:
+        type: string
+      drinkable:
+        type: boolean
+      refillable:
+        type: boolean
+      spicy:
+        type: string
+      image:
+        type: string
+      ingredients:
+        type: array
+        items:
+          $ref: "#/definitions/ingredientsDefinition"
+    example:
+      name: "Food Example"
+      price: 15.15
+      size: "P"
+      drinkable: false
+      refillable: true
+      spicy: "Hot"
+      image: "http://lorempixel.com/640/480/food"
+      ingredients:
+        - name: "Lettuce"
+          isExpired: false
+        - name: "Carrot"
+          isExpired: false
+        - name: "Rice"
+          isExpired: false
+  comboItem:
+    required:
+      - name
+    properties:
+      name:
+        type: string
+      foods:
+        type: array
+        items:
+          $ref: "#/definitions/partialFoodDefinition"
+    example:
+      name: "Combo Example"
+      foods:
+        - name: "Food One"
+          price: 5.10
+          size: "P"
+          refillable: false
+        - name: "Food Two"
+          price: 5.20
+          size: "Default"
+          refillable: false
+        - name: "Food Three"
+          price: 5.30
+          size: "M"
+          refillable: false
+      totalPrice: 15.60
+  BadRequest:
+    required:
+      - results
+    properties:
+      results:
+        type: object
+        required:
+          - status
+          - message
+        properties:
+          status:
+            type: string
+          message:
+            type: string
+        example:
+          status: 400
+          message: Some explanation about what you did wrong :)
+  NotFound:
+    required:
+      - results
+    properties:
+      results:
+        type: object
+        required:
+          - status
+          - message
+        properties:
+          status:
+            type: string
+          message:
+            type: string
+        example:
+          status: 404
+          message: Resource not found
   ErrorResponse:
     required:
       - message
