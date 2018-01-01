@@ -43,45 +43,47 @@ paths:
       description: Submit an new Food to the list
       operationId: food
       parameters:
-        - name: refillable
-          in: body
-          description: If this food is refillable at least one time
-          required: true
-          type: boolean
-        - name: drinkable
-          in: body
-          description: If this food is able to drink
-          required: true
-          type: boolean
-        - name: name
-          in: body
-          description: Name of the current food
-          required: true
-          type: string
-        - name: price
-          in: body
-          description: Price to buy the current food
-          required: true
-          type: Number
-        - name: size
-          in: body
-          description: The number of current page
-          required: false
-          type: string
-          enum:
-            - P
-            - M
-            - G
-            - Default
-        - name: spicy
-          in: body
-          description: If the food have is spicy
-          required: false
-          type: string
-          enum:
-            - Light
-            - Medium
-            - Hot
+        - in: body
+          name: postFoodPayload
+          description: Payload format to submit an new food
+          schema:
+            type: object
+            required:
+              - refillable
+              - drinkable
+              - name
+              - price
+            properties:
+              refillable:
+                type: boolean
+              drinkable:
+                type: boolean
+              name:
+                type: string
+              price:
+                type: number
+              size:
+                type: string
+              spicy:
+                type: string
+              ingredients:
+                type: array
+                items:
+                  $ref: "#/definitions/ingredientsDefinition"
+            example:
+              name: "Burrito"
+              refillable: true
+              drinkable: false
+              price: 2.17
+              size: "P"
+              spicy: "Hot"
+              ingredients:
+                - name: "Lettuce"
+                  isExpired: false
+                - name: "Onions"
+                  isExpired: false
+                - name: "Meat"
+                  isExpired: false
       responses:
         "200":
           description: Success
@@ -97,6 +99,11 @@ paths:
         - foodById
       description: Returns exclusive food by id
       operationId: food
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
       responses:
         "200":
           description: Success
@@ -112,45 +119,33 @@ paths:
       description: Edit informations from an specific Food
       operationId: food
       parameters:
-        - name: refillable
-          in: query
-          description: If this food is refillable at least one time
-          required: false
-          type: boolean
-        - name: drinkable
-          in: query
-          description: If this food is able to drink
-          required: false
-          type: boolean
-        - name: name
-          in: body
-          description: Name of the current food
-          required: false
-          type: string
-        - name: price
-          in: body
-          description: Price to buy the current food
-          required: false
-          type: Number
-        - name: size
-          in: query
-          description: The number of current page
-          required: false
-          type: string
-          enum:
-            - P
-            - M
-            - G
-            - Default
-        - name: spicy
-          in: body
-          description: If the food have is spicy
-          required: false
-          type: string
-          enum:
-            - Light
-            - Medium
-            - Hot
+        - in: body
+          name: putFoodPayload
+          description: Payload format to edit the current Food
+          schema:
+            type: object
+            properties:
+              refillable:
+                type: boolean
+              drinkable:
+                type: boolean
+              name:
+                type: string
+              price:
+                type: number
+              size:
+                type: string
+              spicy:
+                type: string
+              ingredients:
+                type: array
+                items:
+                  $ref: "#/definitions/ingredientsDefinition"
+            example:
+              name: "Burrito"
+              refillable: true
+              drinkable: false
+              price: 2.17
       responses:
         "200":
           description: Success
@@ -166,45 +161,30 @@ paths:
       description: Edit only one atribute from an specific Food
       operationId: food
       parameters:
-        - name: refillable
-          in: query
-          description: If this food is refillable at least one time
-          required: false
-          type: boolean
-        - name: drinkable
-          in: query
-          description: If this food is able to drink
-          required: false
-          type: boolean
-        - name: name
-          in: body
-          description: Name of the current food
-          required: false
-          type: string
-        - name: price
-          in: body
-          description: Price to buy the current food
-          required: false
-          type: Number
-        - name: size
-          in: query
-          description: The number of current page
-          required: false
-          type: string
-          enum:
-            - P
-            - M
-            - G
-            - Default
-        - name: spicy
-          in: body
-          description: If the food have is spicy
-          required: false
-          type: string
-          enum:
-            - Light
-            - Medium
-            - Hot
+        - in: body
+          name: patchFoodPayload
+          description: Payload format to edit the current Food
+          schema:
+            type: object
+            properties:
+              refillable:
+                type: boolean
+              drinkable:
+                type: boolean
+              name:
+                type: string
+              price:
+                type: number
+              size:
+                type: string
+              spicy:
+                type: string
+              ingredients:
+                type: array
+                items:
+                  $ref: "#/definitions/ingredientsDefinition"
+            example:
+              name: "Burrito Patched"
       responses:
         "200":
           description: Success
@@ -260,19 +240,36 @@ paths:
       description: Submit an new Combo to the list
       operationId: combo
       parameters:
-        - name: name
-          in: body
-          description: Name of the current combo
-          required: true
-          type: string
-        - name: foods
-          in: body
-          description: List of foods attached to this combo
-          required: true
+        - in: body
+          name: postComboPayload
+          description: Payload format to submit an new Combo
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/partialFoodDefinition'
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              foods:
+                type: array
+                items:
+                  $ref: "#/definitions/partialFoodDefinition"
+            example:
+              name: "Burrito"
+              foods:
+                - name: "Burrito"
+                  size: "M"
+                  price: 5.13
+                  refillable: false
+                - name: "Taco"
+                  size: "M"
+                  price: 12.50
+                  refillable: false
+                - name: "Drink"
+                  size: "M"
+                  price: 5.13
+                  refillable: false
+                  image: "http://lorempixel.com/640/480/food"
       responses:
         "200":
           description: Success
@@ -303,19 +300,27 @@ paths:
       description: Edit informations from an specific Combo
       operationId: combo
       parameters:
-        - name: name
-          in: body
-          description: Name of the current combo
-          required: true
-          type: boolean
-        - name: foods
-          in: body
-          description: List of foods attached to this combo
-          required: true
+        - in: body
+          name: putComboPayload
+          description: Payload format to edit the current Combo
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/partialFoodDefinition'
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              foods:
+                type: array
+                items:
+                  $ref: "#/definitions/partialFoodDefinition"
+            example:
+              name: "Burrito"
+              foods:
+                - name: "Burrito Put"
+                  size: "M"
+                  price: 6.13
+                  refillable: false
       responses:
         "200":
           description: Success
@@ -331,19 +336,22 @@ paths:
       description: Edit only one atribute from an specific Combo
       operationId: combo
       parameters:
-        - name: name
-          in: body
-          description: Name of the current combo
-          required: true
-          type: boolean
-        - name: foods
-          in: body
-          description: List of foods attached to this combo
-          required: true
+        - in: body
+          name: patchComboPayload
+          description: Payload format to edit the current Combo
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/partialFoodDefinition'
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              foods:
+                type: array
+                items:
+                  $ref: "#/definitions/partialFoodDefinition"
+            example:
+              name: "Burrito Patched"
       responses:
         "200":
           description: Success
@@ -384,13 +392,13 @@ definitions:
         type: number
       size:
         type: string
-      spicy:
-        type: string
       drinkable:
         type: boolean
       refillable:
         type: boolean
       image:
+        type: string
+      spicy:
         type: string
       ingredients:
         schema:
