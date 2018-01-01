@@ -20,7 +20,6 @@ module.exports = {
   },
 
   post: (req, res) => {
-
     let combo   = new Combo,
         message = `Combo ${req.body.name} created with success!`;
 

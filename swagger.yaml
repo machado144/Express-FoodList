@@ -1,12 +1,11 @@
 swagger: "2.0"
 info:
-  version: "0.0.1"
+  version: "1.0.0"
   title: FoodList API
 host: localhost:8081
 basePath: /api
 schemes:
   - http
-  - https
 consumes:
   - application/json
 produces:
@@ -22,11 +21,16 @@ paths:
           description: The number of current page
           required: false
           type: string
+        - name: limit
+          in: query
+          description: The limit number of ocurrences that must be showed per page
+          required: false
+          type: string
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
@@ -35,13 +39,23 @@ paths:
       description: Submit an new Food to the list
       operationId: food
       parameters:
+        - name: refillable
+          in: query
+          description: If this food is refillable at least one time
+          required: true
+          type: boolean
+        - name: drinkable
+          in: query
+          description: If this food is able to drink
+          required: true
+          type: boolean
         - name: name
-          in: payload
+          in: body
           description: Name of the current food
           required: true
           type: string
         - name: price
-          in: payload
+          in: body
           description: Price to buy the current food
           required: true
           type: Number
@@ -56,7 +70,7 @@ paths:
             - G
             - Default
         - name: spicy
-          in: payload
+          in: body
           description: If the food have is spicy
           required: false
           type: string
@@ -64,21 +78,11 @@ paths:
             - Light
             - Medium
             - Hot
-        - name: refillable
-          in: query
-          description: If this food is refillable at least one time
-          required: true
-          type: boolean
-        - name: drinkable
-          in: query
-          description: If this food is able to drink
-          required: true
-          type: boolean
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
@@ -91,7 +95,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
@@ -99,23 +103,103 @@ paths:
     put:
       description: Edit informations from an specific Food
       operationId: food
+      parameters:
+        - name: refillable
+          in: query
+          description: If this food is refillable at least one time
+          required: false
+          type: boolean
+        - name: drinkable
+          in: query
+          description: If this food is able to drink
+          required: false
+          type: boolean
+        - name: name
+          in: body
+          description: Name of the current food
+          required: false
+          type: string
+        - name: price
+          in: body
+          description: Price to buy the current food
+          required: false
+          type: Number
+        - name: size
+          in: query
+          description: The number of current page
+          required: false
+          type: string
+          enum:
+            - P
+            - M
+            - G
+            - Default
+        - name: spicy
+          in: body
+          description: If the food have is spicy
+          required: false
+          type: string
+          enum:
+            - Light
+            - Medium
+            - Hot
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
     patch:
-      description: Edit only on atribute from an specific Food
+      description: Edit only one atribute from an specific Food
       operationId: food
+      parameters:
+        - name: refillable
+          in: query
+          description: If this food is refillable at least one time
+          required: false
+          type: boolean
+        - name: drinkable
+          in: query
+          description: If this food is able to drink
+          required: false
+          type: boolean
+        - name: name
+          in: body
+          description: Name of the current food
+          required: false
+          type: string
+        - name: price
+          in: body
+          description: Price to buy the current food
+          required: false
+          type: Number
+        - name: size
+          in: query
+          description: The number of current page
+          required: false
+          type: string
+          enum:
+            - P
+            - M
+            - G
+            - Default
+        - name: spicy
+          in: body
+          description: If the food have is spicy
+          required: false
+          type: string
+          enum:
+            - Light
+            - Medium
+            - Hot
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
@@ -127,7 +211,134 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/HelloWorldResponse"
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /combos:
+    get:
+      description: Returns Combo List to the user
+      operationId: combo
+      parameters:
+        - name: page
+          in: query
+          description: The number of current page
+          required: false
+          type: string
+        - name: limit
+          in: query
+          description: The limit number of ocurrences that must be showed per page
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: Submit an new Combo to the list
+      operationId: combo
+      parameters:
+        - name: name
+          in: body
+          description: Name of the current combo
+          required: true
+          type: string
+        - name: foods
+          in: body
+          description: List of foods attached to this combo
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/foodSchema'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /combos/{comboId}:
+    get:
+      description: Returns exclusive combo by id
+      operationId: combo
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      description: Edit informations from an specific Combo
+      operationId: combo
+      parameters:
+        - name: name
+          in: body
+          description: Name of the current combo
+          required: true
+          type: boolean
+        - name: foods
+          in: body
+          description: List of foods attached to this combo
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/foodSchema'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    patch:
+      description: Edit only one atribute from an specific Food
+      operationId: combo
+      parameters:
+        - name: name
+          in: body
+          description: Name of the current combo
+          required: true
+          type: boolean
+        - name: foods
+          in: body
+          description: List of foods attached to this combo
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/foodSchema'
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      description: Remove the specific combo from Combo List
+      operationId: combo
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/UndefinedYetResponse"
         default:
           description: Error
           schema:
@@ -135,7 +346,23 @@ paths:
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
-  HelloWorldResponse:
+  foodSchema:
+    required:
+      - name
+      - price
+      - size
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+      size:
+        type: string
+      refillable:
+        type: boolean
+      image:
+        type: string
+  UndefinedYetResponse:
     required:
       - message
     properties:
