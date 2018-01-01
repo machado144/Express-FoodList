@@ -256,7 +256,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/foodSchema'
+              $ref: '#/definitions/partialFoodDefinition'
       responses:
         "200":
           description: Success
@@ -295,7 +295,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/foodSchema'
+              $ref: '#/definitions/partialFoodDefinition'
       responses:
         "200":
           description: Success
@@ -321,7 +321,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/foodSchema'
+              $ref: '#/definitions/partialFoodDefinition'
       responses:
         "200":
           description: Success
@@ -346,7 +346,43 @@ paths:
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
-  foodSchema:
+  foodDefinition:
+    required:
+      - name
+      - price
+      - size
+      - drinkable
+      - refillable
+    properties:
+      name:
+        type: string
+      price:
+        type: number
+      size:
+        type: string
+      spicy:
+        type: string
+      drinkable:
+        type: boolean
+      refillable:
+        type: boolean
+      image:
+        type: string
+      ingredients:
+        schema:
+          type: array
+          items:
+            $ref: "#/definitions/ingredientsDefinition"
+  ingredientsDefinition:
+    required:
+      - name
+      - isExpired
+    properties:
+      name:
+        type: string
+      isExpired:
+        type: boolean
+  partialFoodDefinition:
     required:
       - name
       - price
