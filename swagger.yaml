@@ -84,7 +84,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/CreateSuccess"
         "400":
           description: BadRequest
           schema:
@@ -152,11 +152,15 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/UpdateSuccess"
         "404":
           description: Resouce not found
           schema:
             $ref: "#/definitions/NotFound"
+        "400":
+          description: BadRequest
+          schema:
+            $ref: "#/definitions/BadRequest"
     patch:
       tags:
         - foodById
@@ -196,11 +200,15 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/UpdateSuccess"
         "404":
           description: Resouce not found
           schema:
             $ref: "#/definitions/NotFound"
+        "400":
+          description: BadRequest
+          schema:
+            $ref: "#/definitions/BadRequest"
     delete:
       tags:
         - foodById
@@ -216,7 +224,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/DeleteSuccess"
         "404":
           description: Resouce not found
           schema:
@@ -283,7 +291,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/CreateSuccess"
         "400":
           description: BadRequest
           schema:
@@ -345,11 +353,15 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/UpdateSuccess"
         "404":
           description: Resouce not found
           schema:
             $ref: "#/definitions/NotFound"
+        "400":
+          description: BadRequest
+          schema:
+            $ref: "#/definitions/BadRequest"
     patch:
       tags:
         - comboById
@@ -381,11 +393,15 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/UpdateSuccess"
         "404":
           description: Resouce not found
           schema:
             $ref: "#/definitions/NotFound"
+        "400":
+          description: BadRequest
+          schema:
+            $ref: "#/definitions/BadRequest"
     delete:
       tags:
         - comboById
@@ -401,7 +417,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/UndefinedYetResponse"
+            $ref: "#/definitions/DeleteSuccess"
         "404":
           description: Resouce not found
           schema:
@@ -502,6 +518,9 @@ definitions:
           refillable: false
       totalPrice: 15.60
   foodList:
+    properties:
+      items:
+        $ref: "#/definitions/foodItem"
     example:
       - _id: 3a4a8309c5856aefd077a81d
         name: Food Example A
@@ -542,6 +561,9 @@ definitions:
         refillable: false
         drinkable: true
   comboList:
+    properties:
+      items:
+        $ref: "#/definitions/comboItem"
     example:
       - _id: "5a4a7ddec5e723ce35db1e03"
         name: Combo Example A
@@ -623,9 +645,48 @@ definitions:
         example:
           status: 404
           message: Resource not found
-  ErrorResponse:
-    required:
-      - message
+  UpdateSuccess:
     properties:
-      message:
-        type: string
+      results:
+        type: object
+        required:
+          - status
+          - message
+        properties:
+          status:
+            type: string
+          message:
+            type: string
+        example:
+          status: 200
+          message: The current Record has been updated with success
+  CreateSuccess:
+    properties:
+      results:
+        type: object
+        required:
+          - status
+          - message
+        properties:
+          status:
+            type: string
+          message:
+            type: string
+        example:
+          status: 201
+          message: The current Record has been created with success
+  DeleteSuccess:
+    properties:
+      results:
+        type: object
+        required:
+          - status
+          - message
+        properties:
+          status:
+            type: string
+          message:
+            type: string
+        example:
+          status: 200
+          message: The current Record has been deleted with success
