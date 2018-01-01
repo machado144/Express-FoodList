@@ -13,6 +13,8 @@ produces:
 paths:
   /foods:
     get:
+      tags:
+        - foods
       description: Returns Food List to the user
       operationId: food
       parameters:
@@ -36,16 +38,18 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     post:
+      tags:
+        - foods
       description: Submit an new Food to the list
       operationId: food
       parameters:
         - name: refillable
-          in: query
+          in: body
           description: If this food is refillable at least one time
           required: true
           type: boolean
         - name: drinkable
-          in: query
+          in: body
           description: If this food is able to drink
           required: true
           type: boolean
@@ -60,7 +64,7 @@ paths:
           required: true
           type: Number
         - name: size
-          in: query
+          in: body
           description: The number of current page
           required: false
           type: string
@@ -89,6 +93,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /foods/{foodId}:
     get:
+      tags:
+        - foodById
       description: Returns exclusive food by id
       operationId: food
       responses:
@@ -101,6 +107,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     put:
+      tags:
+        - foodById
       description: Edit informations from an specific Food
       operationId: food
       parameters:
@@ -153,6 +161,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     patch:
+      tags:
+        - foodById
       description: Edit only one atribute from an specific Food
       operationId: food
       parameters:
@@ -205,6 +215,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     delete:
+      tags:
+        - foodById
       description: Remove the specific food from Food List
       operationId: food
       responses:
@@ -218,6 +230,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /combos:
     get:
+      tags:
+        - combos
       description: Returns Combo List to the user
       operationId: combo
       parameters:
@@ -241,6 +255,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     post:
+      tags:
+        - combos
       description: Submit an new Combo to the list
       operationId: combo
       parameters:
@@ -268,6 +284,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /combos/{comboId}:
     get:
+      tags:
+        - comboById
       description: Returns exclusive combo by id
       operationId: combo
       responses:
@@ -280,6 +298,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     put:
+      tags:
+        - comboById
       description: Edit informations from an specific Combo
       operationId: combo
       parameters:
@@ -306,7 +326,9 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     patch:
-      description: Edit only one atribute from an specific Food
+      tags:
+        - comboById
+      description: Edit only one atribute from an specific Combo
       operationId: combo
       parameters:
         - name: name
@@ -332,6 +354,8 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
     delete:
+      tags:
+        - comboById
       description: Remove the specific combo from Combo List
       operationId: combo
       responses:
