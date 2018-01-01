@@ -1,11 +1,14 @@
-const morgan     = require('morgan'),
-      express    = require('express'),
-      app        = express(),
-      bodyParser = require('body-parser'),
-      routes     = require('./routes'),
-      fs         = require('fs'),
-      path       = require('path'),
-      rfs        = require('rotating-file-stream');
+const morgan          = require('morgan'),
+      express         = require('express'),
+      app             = express(),
+      bodyParser      = require('body-parser'),
+      routes          = require('./routes'),
+      fs              = require('fs'),
+      path            = require('path'),
+      rfs             = require('rotating-file-stream'),
+      swaggerUi       = require('swagger-ui-express'),
+      YAML            = require('yamljs')
+      swaggerDocument = YAML.load('./swagger.yaml');
 
 const port = process.env.PORT || 8081;
 
@@ -21,6 +24,8 @@ let accessLogStream = rfs('access.log', {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('combined', {stream: accessLogStream}))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api', routes);
 
