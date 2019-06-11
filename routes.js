@@ -15,9 +15,7 @@ const seedsRun         = require('./app/seeds/seeds_config'),
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://localhost/food_list${envConfig()}`, {
-  useMongoClient: true
-});
+mongoose.connect(`mongodb://localhost/food_list${envConfig()}`);
 
 mongoose.connection
   .once('open', () => seedsRun(mongoose))
