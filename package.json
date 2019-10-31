@@ -16,7 +16,7 @@
     "express-mung": "^0.4.6",
     "faker": "^4.1.0",
     "lodash": "^4.17.11",
-    "mongoose": "^5.5.14",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "rotating-file-stream": "^1.2.2",
     "swagger-ui-express": "^2.0.13",
